@@ -180,11 +180,11 @@ class SODATest < Test::Unit::TestCase
       assert_equal 1, response.size
 
       quake = response.first
-      assert_equal 'Puerto Rico region', quake.region
-      assert_equal '4.2', quake.magnitude
-      assert_equal '17.00', quake.depth
+      assert_equal 'Puerto Rico region', quake['region']
+      assert_equal '4.2', quake['magnitude']
+      assert_equal '17.00', quake['depth']
 
-      assert quake.region?
+      assert quake['region']
     end
   end
 
@@ -201,7 +201,7 @@ class SODATest < Test::Unit::TestCase
           .to_return(resource('fakeuser.response'))
 
         response = @client.get('/api/users/current.json')
-        assert_equal USER, response.email
+        assert_equal USER, response['email']
       end
     end
 

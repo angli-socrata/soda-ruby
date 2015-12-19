@@ -176,11 +176,12 @@ module SODA
       elsif response['Content-Type'].include?('application/json')
         # Return a bunch of mashes if we're JSON
         response = JSON.parse(response.body, :max_nesting => false)
-        if response.is_a? Array
-          return response.map { |r| Hashie::Mash.new(r) }
-        else
-          return Hashie::Mash.new(response)
-        end
+        # if response.is_a? Array
+        #   return response.map { |r| Hashie::Mash.new(r) }
+        # else
+        #   return Hashie::Mash.new(response)
+        # end
+        return response
       else
         # We don't partically care, just return the raw body
         return response.body
